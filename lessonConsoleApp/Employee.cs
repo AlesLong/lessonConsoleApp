@@ -8,8 +8,8 @@ namespace lessonConsoleApp
         private string surname;
         private int age;
         private int salary;
-        bool isWorking;
-        char sex;
+        private bool isWorking;
+        private string sex;
 
         public Employee(string name,
                         string surname,
