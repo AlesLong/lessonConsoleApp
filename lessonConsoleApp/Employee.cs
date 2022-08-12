@@ -16,7 +16,7 @@ namespace lessonConsoleApp
                         int age,
                         int salary,
                         bool isWorking,
-                        char sex)
+                        string sex)
         {
             this.Name = name;
             this.Surname = surname;
@@ -31,7 +31,7 @@ namespace lessonConsoleApp
         public int Age { get => age; set => age = value; }
         public int Salary { get => salary; set => salary = value; }
         public bool IsWorking { get => isWorking; set => isWorking = value; }
-        public char Sex { get => sex; set => sex = value; }
+        public string Sex { get => sex; set => sex = value; }
 
         public override bool Equals(object obj)
         {
