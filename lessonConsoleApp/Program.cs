@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,34 +8,44 @@ namespace lessonConsoleApp
 {
     internal class Program
     {
+
         static void Main(string[] args)
         {
-            Employee emp1 = new Employee("Vasya", "Pupkin", 23, 9999, true, 'm');
-            Employee emp2 = new Employee("Sveta", "Sokolova", 30, 3333, false, 'f');
-            Employee emp3 = new Employee("Dave", "Mustaine", 61, 22222, true,'m');
-            Employee emp4 = new Employee("Dave", "Elefson", 23, 1234, false, 'm') ;
-            Employee emp5 = new Employee("Vasya", "Pupkin", 23, 9999, true, 'f');
 
-            List<Employee> employeeList = new List<Employee>();
-            employeeList.Add(emp1);
-            employeeList.Add(emp2);
-            employeeList.Add(emp3);
-            employeeList.Add(emp4);
-            employeeList.Add(emp5);
 
-            List<Employee> filtredList = new List<Employee>();
+            List<Employee> employeeList = new List<Employee>() {
+            new Employee("Vasya", "Pupkin", 23, 9999, true, "m"),
+            new Employee("Sveta", "Sokolova", 30, 3333, false, "f"),
+            new Employee("Dave", "Mustaine", 61, 22222, true, "m"),
+            new Employee("Dave", "Elefson", 23, 1234, false, "m"),
+            new Employee("Vasya", "Pupkin", 23, 9999, true, "f"),
+        };
 
-            filtredList.AddRange(employeeList.Where(el => (el.Name == "Vasya"&&el.IsWorking == true)));
+            PrintList(FiltredListNameIsWorking(employeeList, "Vasya", true));
 
-            filtredList.ForEach(el => Console.WriteLine(el));
+            Console.WriteLine("");
 
-            List<Employee> filtredList2 = new List<Employee>();
-
-            filtredList2.AddRange(employeeList.Where(el => el.Name == "Dave" && el.Sex == 'm'));
-
-            filtredList2.ForEach(el => Console.WriteLine(el));
+            PrintList(FiltredListNameSex(employeeList, "Dave", "m"));
 
             Console.ReadLine();
+        }
+
+        private static List<Employee> FiltredListNameIsWorking(List<Employee> list, string name, bool isWorking)
+        {
+            List<Employee> filtredList = new List<Employee>();
+            filtredList.AddRange(list.Where(el => (el.Name == name && el.IsWorking == isWorking)));
+            return filtredList;
+        }
+        private static List<Employee> FiltredListNameSex(List<Employee> list, string name, string sex)
+        {
+            List<Employee> filtredList = new List<Employee>();
+            filtredList.AddRange(list.Where(el => el.Name == name && el.Sex == sex));
+            return filtredList;
+        }
+
+        private static void PrintList(List<Employee> list)
+        {
+            list.ForEach(el => Console.WriteLine(el));
         }
     }
 }
